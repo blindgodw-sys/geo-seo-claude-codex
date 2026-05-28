@@ -8,16 +8,60 @@
 </p>
 
 <p align="center">
+  <strong>GEO 优先，SEO 辅助。</strong> 面向 AI 搜索引擎优化网站可见性<br/>
+  （ChatGPT、Claude、Perplexity、Gemini、Google AI Overviews），同时保留传统 SEO 基础。
+</p>
+
+<p align="center">
   AI search is eating traditional search. This tool optimizes for where traffic is going, not where it was.
+</p>
+
+<p align="center">
+  AI 搜索正在重塑传统搜索流量。本工具优化的是流量正在迁移到的 AI 搜索场景。
 </p>
 
 ---
 
-## Codex Native Fork
+## Codex Native Fork / Codex 原生改写版本
 
-This repository is a Codex-native port of the original MIT-licensed
-`zubair-trabzada/geo-seo-claude` project. It installs into `~/.codex/skills`,
-uses Codex skill conventions, and includes a one-command Codex installer.
+中文说明：本仓库基于开源项目
+[`zubair-trabzada/geo-seo-claude`](https://github.com/zubair-trabzada/geo-seo-claude)
+改编，原项目采用 MIT License（MIT 许可证）。本仓库将原 Claude Code
+技能包改写为 Codex 可直接安装和调用的技能包，并保留原项目版权声明和
+MIT 许可证文本。
+
+本仓库由 `blindgodw-sys` 独立维护，不是上游项目的官方发布版本。完整改写
+说明、合规说明、验证记录见
+[`docs/codex-port-notes.md`](docs/codex-port-notes.md)。
+
+This repository is a Codex-native adaptation of the original open-source
+project [`zubair-trabzada/geo-seo-claude`](https://github.com/zubair-trabzada/geo-seo-claude),
+which is distributed under the MIT License.
+
+The original copyright and MIT License notice are preserved in
+[`LICENSE`](LICENSE). This fork is maintained independently by
+`blindgodw-sys`; it is not an official release of the upstream project.
+
+What changed in this fork:
+
+- installs into `~/.codex/skills` instead of Claude Code directories;
+- adds Codex-native skill entrypoints under `codex/`;
+- adds `codex-install.sh` for one-command Codex installation;
+- adds `scripts/geo_cli.py` as the repeatable command adapter;
+- keeps the original skill bundle, agents, schema templates, and core GEO logic;
+- adds Chinese report-output rules for user-facing reports.
+
+See [`docs/codex-port-notes.md`](docs/codex-port-notes.md) for the full
+modification list, design notes, validation record, and upstream attribution.
+
+本版本主要改写内容：
+
+- 安装位置从 Claude Code 目录改为 `~/.codex/skills`；
+- 在 `codex/` 下新增 Codex 原生技能入口；
+- 新增 `codex-install.sh`，支持一条命令安装；
+- 新增 `scripts/geo_cli.py`，作为可重复执行的命令适配器；
+- 保留原技能包、子智能体、结构化数据模板和核心 GEO 逻辑；
+- 增加中文报告输出规则，面向用户的报告默认支持中文。
 
 ---
 
