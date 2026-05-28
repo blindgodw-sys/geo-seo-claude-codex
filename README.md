@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="GEO-SEO Claude Code Skill" width="900"/>
+  <img src="assets/banner.svg" alt="GEO-SEO Codex Skill" width="900"/>
 </p>
 
 <p align="center">
@@ -13,9 +13,11 @@
 
 ---
 
-## Star History
+## Codex Native Fork
 
-[![Star History Chart](https://api.star-history.com/svg?repos=zubair-trabzada/geo-seo-claude&type=Date)](https://www.star-history.com/#zubair-trabzada/geo-seo-claude&Date)
+This repository is a Codex-native port of the original MIT-licensed
+`zubair-trabzada/geo-seo-claude` project. It installs into `~/.codex/skills`,
+uses Codex skill conventions, and includes a one-command Codex installer.
 
 ---
 
@@ -34,40 +36,29 @@
 
 ## Quick Start
 
-### One-Command Install (macOS/Linux)
+### One-Command Codex Install (macOS/Linux)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/geo-seo-claude/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/blindgodw-sys/geo-seo-claude-codex/main/codex-install.sh | bash
 ```
 
 ### Manual Install
 
 ```bash
-git clone https://github.com/zubair-trabzada/geo-seo-claude.git
-cd geo-seo-claude
-./install.sh
+git clone https://github.com/blindgodw-sys/geo-seo-claude-codex.git
+cd geo-seo-claude-codex
+./codex-install.sh
 ```
 
-### Windows (Git Bash)
+### Windows
 
-Requires [Git for Windows](https://git-scm.com/downloads) which includes Git Bash.
-
-```bash
-# Option 1: One-command install (run from Git Bash, not PowerShell/CMD)
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/geo-seo-claude/main/install-win.sh | bash
-
-# Option 2: Manual install
-git clone https://github.com/zubair-trabzada/geo-seo-claude.git
-cd geo-seo-claude
-./install-win.sh
-```
-
-> **Note:** Right-click the folder and select "Open Git Bash here", or open Git Bash and navigate to the directory. Do not use PowerShell or Command Prompt.
+Use WSL or Git Bash. The Codex installer targets Unix-style paths and installs
+under `~/.codex/skills`.
 
 ### Requirements
 
 - Python 3.8+ (on Debian/Ubuntu also `python3-venv`)
-- Claude Code CLI
+- Codex CLI
 - Git
 - Optional: [`uv`](https://docs.astral.sh/uv/) — if present, the installer uses it for a faster dependency install
 - Optional: Playwright (for screenshots)
@@ -75,7 +66,7 @@ cd geo-seo-claude
 ### Isolated install
 
 Python dependencies are installed into a dedicated virtual environment at
-`~/.claude/skills/geo/.venv/`. Your system Python is **not** touched, and
+`~/.codex/skills/geo/.venv/`. Your system Python is **not** touched, and
 uninstalling the skill removes the venv together with the rest of the files.
 
 Skill and agent files reference that venv directly, so the tool works
@@ -85,22 +76,22 @@ regardless of what `python3` resolves to on your `PATH`.
 
 ## Commands
 
-Open Claude Code and use these commands:
+Open Codex and use these commands:
 
 | Command | What It Does |
 |---------|-------------|
-| `/geo audit <url>` | Full GEO + SEO audit with parallel subagents |
-| `/geo quick <url>` | 60-second GEO visibility snapshot |
-| `/geo citability <url>` | Score content for AI citation readiness |
-| `/geo crawlers <url>` | Check AI crawler access (robots.txt) |
-| `/geo llmstxt <url>` | Analyze or generate llms.txt |
-| `/geo brands <url>` | Scan brand mentions across AI-cited platforms |
-| `/geo platforms <url>` | Platform-specific optimization |
-| `/geo schema <url>` | Structured data analysis & generation |
-| `/geo technical <url>` | Technical SEO audit |
-| `/geo content <url>` | Content quality & E-E-A-T assessment |
-| `/geo report <url>` | Generate client-ready GEO report |
-| `/geo report-pdf` | Generate professional PDF report with charts & visualizations |
+| `geo audit <url>` | Full GEO + SEO audit |
+| `geo quick <url>` | 60-second GEO visibility snapshot |
+| `geo citability <url>` | Score content for AI citation readiness |
+| `geo crawlers <url>` | Check AI crawler access (robots.txt) |
+| `geo llmstxt <url>` | Analyze or generate llms.txt |
+| `geo brands <url>` | Scan brand mentions across AI-cited platforms |
+| `geo platforms <url>` | Platform-specific optimization |
+| `geo schema <url>` | Structured data analysis & generation |
+| `geo technical <url>` | Technical SEO audit |
+| `geo content <url>` | Content quality & E-E-A-T assessment |
+| `geo report <url>` | Generate client-ready GEO report |
+| `geo report-pdf <url>` | Generate HTML and PDF report |
 
 ---
 
@@ -108,6 +99,9 @@ Open Claude Code and use these commands:
 
 ```
 geo-seo-claude/
+├── codex/                       # Codex-native skill entrypoints
+│   ├── geo/
+│   └── geo-update/
 ├── geo/                          # Main skill orchestrator
 │   └── SKILL.md                  # Primary skill file with commands & routing
 ├── skills/                       # 13 specialized sub-skills
@@ -136,7 +130,7 @@ geo-seo-claude/
 │   ├── citability_scorer.py      # AI citability scoring engine
 │   ├── brand_scanner.py          # Brand mention detection
 │   ├── llmstxt_generator.py      # llms.txt validation & generation
-│   └── generate_pdf_report.py    # PDF report generator (ReportLab)
+│   └── geo_cli.py                # Codex CLI command adapter
 ├── schema/                       # JSON-LD templates
 │   ├── organization.json         # Organization schema (with sameAs)
 │   ├── local-business.json       # LocalBusiness schema
@@ -144,7 +138,7 @@ geo-seo-claude/
 │   ├── software-saas.json        # SoftwareApplication schema
 │   ├── product-ecommerce.json    # Product schema with offers
 │   └── website-searchaction.json # WebSite + SearchAction schema
-├── install.sh                    # One-command installer
+├── codex-install.sh              # One-command Codex installer
 ├── uninstall.sh                  # Uninstaller
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
@@ -154,7 +148,7 @@ geo-seo-claude/
 
 ## Data Storage
 
-The CRM and reporting skills (`/geo prospect`, `/geo proposal`, `/geo compare`) store runtime data outside the Claude Code directory:
+The CRM and reporting skills (`geo prospect`, `geo proposal`, `geo compare`) store runtime data outside the Codex directory:
 
 ```
 ~/.geo-prospects/
@@ -173,7 +167,7 @@ This directory is **not removed** by the uninstaller — delete it manually if y
 
 ### Full Audit Flow
 
-When you run `/geo audit https://example.com`:
+When you run `geo audit https://example.com`:
 
 1. **Discovery** — Fetches homepage, detects business type, crawls sitemap
 2. **Parallel Analysis** — Launches 5 subagents simultaneously:
@@ -234,13 +228,10 @@ Generates professional GEO reports in markdown or PDF format. PDF reports includ
 ## Uninstall
 
 ```bash
-./uninstall.sh
+rm -rf ~/.codex/skills/geo ~/.codex/skills/geo-*
 ```
 
-Or manually:
-```bash
-rm -rf ~/.claude/skills/geo ~/.claude/skills/geo-* ~/.claude/agents/geo-*.md
-```
+Runtime CRM data in `~/.geo-prospects/` is not removed by the installer or this manual uninstall command.
 
 ---
 
